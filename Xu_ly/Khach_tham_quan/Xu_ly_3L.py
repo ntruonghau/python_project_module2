@@ -20,7 +20,7 @@ def Tra_cuu_Tivi(Chuoi_Tra_cuu, Danh_sach_Tivi):
         lambda Tivi: Chuoi_Tra_cuu.upper() in  Tivi["Ten"].upper(),Danh_sach_Tivi))
     return Danh_sach
 
-    return Danh_sach
+    # return Danh_sach
 # Xử lý Thể hiện
 def Tao_Chuoi_HTML_Danh_sach_Tivi(Danh_sach_Tivi):
     Chuoi_HTML_Danh_sach = '<div class="row" >'
@@ -28,10 +28,10 @@ def Tao_Chuoi_HTML_Danh_sach_Tivi(Danh_sach_Tivi):
         Chuoi_Don_gia_Ban="Đơn giá Bán {:,}".format(Tivi["Don_gia_Ban"]).replace(",",".")    
         Chuoi_Hinh_nho='<img  style="width:60px;height:60px"  src="'+ \
                  url_for('static', filename = Tivi["Ma_so"]+'.png') + '" />'
-        Chuoi_Hinh_to='<img  style="width:300px"  src="'+ \
-                 url_for('static', filename = Tivi["Ma_so"]+'.png') + '" />'
-        Chuoi_Loai_Tivi = "Thuộc loại: " + Tivi["Nhom_Tivi"]["Ten"] + "<br/>"
-        Chuoi_Ky_hieu = "Ký hiệu:" + Tivi["Ky_hieu"] + "<br/>"
+        # Chuoi_Hinh_to='<img  style="width:300px"  src="'+ \
+        #          url_for('static', filename = Tivi["Ma_so"]+'.png') + '" />'
+        # Chuoi_Loai_Tivi = "Thuộc loại: " + Tivi["Nhom_Tivi"]["Ten"] + "<br/>"
+        # Chuoi_Ky_hieu = "Ký hiệu:" + Tivi["Ky_hieu"] + "<br/>"
         Chuoi_Thong_tin='<div class="btn" style="text-align:left">' + \
                  Tivi["Ten"] + "<br />" + Chuoi_Don_gia_Ban + "</div>"
         """

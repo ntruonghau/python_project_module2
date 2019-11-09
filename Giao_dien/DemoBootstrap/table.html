@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Mã số</th>
+                            <th scope="col">Tên</th>
+                            <th scope="col">Đơn Giá Bán</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if Danh_sach_tivi %}
+                        {% for i in range(Danh_sach_tivi|length) %}
+                        <tr>
+                            <th scope="row">{{ currentPage + 1 + i }}</th>
+                            <td>{{Danh_sach_tivi[i]['Ma_so']}}</td>
+                            <td>{{Danh_sach_tivi[i]['Ten']}}</td>
+                            <td>{{ "{:,}".format(Danh_sach_tivi[i]['Don_gia_Ban'])}}</td>
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-12">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-end">
+                        <!-- Show Previous Page Number-->
+                        {% if page > 1 %}
+                        <li class="page-item"><a class="page-link" href="{{url_for('demo_table', page = page-1)}}">Previous</a></li>
+                        <li class="page-item"><a class="page-link" href="{{url_for('demo_table', page = page-1)}}">{{ page -1 }}</a></li>
+                        {% else %}
+                        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                        <li class="page-item disabled"><a class="page-link" href="#">&nbsp;</a></li>
+                        {% endif %}
+                        <!-- Current Page Number -->
+                        <li class="page-item active" aria-current="page">
+                            <a class="page-link" href="{{url_for('demo_table', page = page)}}">{{page}}<span class="sr-only">(current)</span></a>
+                        </li>
+                        <!-- Show Next Page Number-->
+                        {% if page < total %}
+                        <li class="page-item"><a class="page-link" href="{{url_for('demo_table', page = page+1)}}">{{page + 1}}</a></li>
+                        <li class="page-item"><a class="page-link" href="{{url_for('demo_table', page = page+1)}}">Next</a></li>
+                        {% else %}
+                        <li class="page-item disabled"><a class="page-link" href="#">&nbsp;</a></li>
+                        <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

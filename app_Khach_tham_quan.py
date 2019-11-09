@@ -5,7 +5,7 @@ from Xu_ly.Khach_tham_quan.Xu_ly_3L import *
 app = Flask(__name__, static_url_path="", static_folder="Media",template_folder='Giao_dien')
 app.secret_key = "super secret key"
  
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/trang-chu", methods=['GET', 'POST'])
 def index1():
     # ****** Khởi động Dữ liệu Nguồn/Nội bộ ********
     Danh_sach_Tivi = Doc_Danh_sach_Tivi()
