@@ -1,18 +1,39 @@
 from flask import   Markup, url_for
 import json
 import os
+import sqlite3
+
 Thu_muc_Du_lieu ="Du_lieu"
 Thu_muc_Tivi = "Du_lieu/Tivi/"
 # Xử lý Lưu trữ 
 def Doc_Danh_sach_Tivi():
     Danh_sach = []
-    for Ten_Tap_tin in os.listdir(Thu_muc_Tivi):
-        Duong_dan = Thu_muc_Tivi + Ten_Tap_tin  
-        data_file = open(Duong_dan, encoding='utf-8')    
-        Tivi = json.load(data_file)    
-        data_file.close()
-        Danh_sach.append(Tivi)   
+    conn = sqlite3.connect('Du_lieu/sqlite/db_module_2.db')
+    chuoi_sql = 'Select * From tblTivi'
+    cursor = conn.execute(chuoi_sql)
+    for tivi in cursor:
+        print(tivi)
+        dict_tivi = {}
+        dict_tivi['Ma_so'] = tivi[0]
+        dict_tivi['Ten'] = tivi[1]
+        dict_tivi['Ky_hieu'] = tivi[2]
+        dict_tivi['Don_gia_Ban'] = tivi[3]
+        dict_tivi['Don_gia_Nhap'] = tivi[4]
+        dict_tivi['So_luong_Ton'] = tivi[5]
+        Danh_sach.append(dict_tivi)
+    conn.close()
     return Danh_sach
+
+
+# def Doc_Danh_sach_Tivi():
+#     Danh_sach = []
+#     for Ten_Tap_tin in os.listdir(Thu_muc_Tivi):
+#         Duong_dan = Thu_muc_Tivi + Ten_Tap_tin  
+#         data_file = open(Duong_dan, encoding='utf-8')    
+#         Tivi = json.load(data_file)    
+#         data_file.close()
+#         Danh_sach.append(Tivi)   
+#     return Danh_sach
 
 # Xử lý Nghiệp vụ 
 def Tra_cuu_Tivi(Chuoi_Tra_cuu, Danh_sach_Tivi):
